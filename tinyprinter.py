@@ -20,11 +20,14 @@ def switchOff():
     if getState() == GPIO.HIGH:
         toggle()
 
-def main():
+def init():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(20, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(21, GPIO.IN)
+
+def main():
+    init()
     if len(sys.argv) < 2:
         cmd = 'status'
     else:
@@ -36,10 +39,15 @@ def main():
     elif cmd == 'toggle':
         toggle()
     elif cmd == 'status':
+        print("Content-type: text/html")
+        print("")
+        print("<html><head><title>Druckerstatus</title></head><body>")
         if getState() == GPIO.LOW:
-            print('off')
+            state = "aus"
         elif getState() == GPIO.HIGH:
-            print('on')
+            state = "an"
+        print("<p>Drucker ist " + state + ".</p>")
+        print("</body></html>")
     else:
         print('Unknown command.')
 

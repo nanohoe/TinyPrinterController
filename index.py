@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import tinyprinter as tp
+import ihingerhof as ih
 import cgitb
 import cgi
 
@@ -39,6 +40,8 @@ else:
     print "Drucker ist aus."
 print "</p>"
 print '<p><a href="index.py?action=on">Einschalten</a>&nbsp;<a href="index.py?action=off">Ausschalten</a></p>'
-print 'CPU-Temperatur (Raspberry Pi): ' + text[:-4] + ' &#176;C'
+print '<p>CPU-Temperatur (Raspberry Pi): ' + text[:-4] + ' &#176;C</p>'
+tempdata = ih.gettemp()
+print '<p>Ihinger Hof: ' + tempdata[1] + ' &#176;C (gemessen ' + tempdata[0] + ')</p>'
 print "</body>"
 print "</html>"

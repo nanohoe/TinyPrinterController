@@ -42,7 +42,7 @@ else:
 print "</p>"
 print '<p><a href="index.py?action=on">Einschalten</a>&nbsp;<a href="index.py?action=off">Ausschalten</a></p>'
 print '<p>Raspberry: ' + text[:-4] + ' &#176;C</p>'
-print '<p>Schlafzimmer: ' + w1temp.printstring() + ' &#176;C</p>'
+print '<p>Schlafzimmer: ' + '{:.1f}'.format(float(w1temp.printstring())) + ' &#176;C</p>'
 tempdata = ih.gettemp('/home/hoe/ih')
 print '<p>Ihinger Hof: ' + tempdata[1] + ' &#176;C (gemessen ' + tempdata[0] + ')</p>'
 print "</body>"
